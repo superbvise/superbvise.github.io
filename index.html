@@ -213,35 +213,23 @@
 
       .brand {
         display: inline-block;
-        background: linear-gradient(
-          120deg,
-          #f4f6ff 0%,
-          var(--accent) 35%,
-          var(--accent-hot) 65%,
-          #f4f6ff 100%
-        );
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shimmer 5s linear infinite;
       }
 
-      @keyframes shimmer {
-        to {
-          background-position: 200% center;
-        }
+      .brand .char {
+        display: inline-block;
+        color: #f4f6ff;
       }
 
-      .brand .v {
+      .brand .char.v {
         color: var(--accent-hot);
-        -webkit-text-fill-color: var(--accent-hot);
-        text-shadow: 0 0 40px rgba(167, 139, 250, 0.6);
+        text-shadow:
+          0 0 24px rgba(167, 139, 250, 0.8),
+          0 0 48px rgba(167, 139, 250, 0.35);
       }
 
-      .domain {
+      .brand .char.domain {
+        color: var(--muted);
         font-weight: 300;
-        opacity: 0.85;
       }
 
       .tagline {
