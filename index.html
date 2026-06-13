@@ -6,7 +6,7 @@
     <title>SuperbVise.ai</title>
     <meta
       name="description"
-      content="AI supervision and monitoring platform."
+      content="Agentic data annotation and self-improvement. Humans and agents, in the loop."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,7 +22,10 @@
         --muted: #9aa8cc;
         --accent: #6ea8ff;
         --accent-hot: #a78bfa;
+        --accent-cyan: #22d3ee;
+        --accent-rose: #fb7185;
         --glow: rgba(110, 168, 255, 0.45);
+        --glow-violet: rgba(167, 139, 250, 0.55);
       }
 
       * {
@@ -203,48 +206,141 @@
         }
       }
 
-      h1 {
-        font-size: clamp(3rem, 12vw, 5.5rem);
+      .wordmark {
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(90deg, var(--accent), var(--accent-hot));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0;
+        animation: fadeUp 0.8s ease forwards 0.15s;
+      }
+
+      .hero {
+        max-width: 780px;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeUp 0.9s ease forwards 0.3s;
+      }
+
+      .hero-line {
+        display: block;
+        font-size: clamp(2rem, 7vw, 3.4rem);
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+
+      .hero-line + .hero-line {
+        margin-top: 0.35rem;
+      }
+
+      .hero-muted {
+        color: rgba(154, 168, 204, 0.55);
+        text-decoration: line-through;
+        text-decoration-color: rgba(251, 113, 133, 0.45);
+        text-decoration-thickness: 2px;
+      }
+
+      .hero-accent {
+        font-size: clamp(2.4rem, 9vw, 4.2rem);
         font-weight: 700;
         letter-spacing: -0.03em;
-        line-height: 1.05;
-        margin-bottom: 1.25rem;
       }
 
-      .brand {
-        display: inline-block;
-      }
-
-      .brand .char {
-        display: inline-block;
+      .hero-superb {
         color: #f4f6ff;
       }
 
-      .brand .char.v {
+      .hero-v {
         color: var(--accent-hot);
         text-shadow:
-          0 0 24px rgba(167, 139, 250, 0.8),
-          0 0 48px rgba(167, 139, 250, 0.35);
+          0 0 20px var(--glow-violet),
+          0 0 50px rgba(167, 139, 250, 0.35);
       }
 
-      .brand .char.domain {
-        color: var(--muted);
-        font-weight: 300;
+      .hero-it {
+        background: linear-gradient(135deg, var(--accent-cyan), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
-      .tagline {
-        max-width: 520px;
-        font-size: clamp(1.05rem, 3vw, 1.35rem);
-        font-weight: 300;
-        line-height: 1.65;
-        color: var(--muted);
+      .tagline-wrap {
+        position: relative;
+        max-width: 620px;
+        padding: 1.35rem 1.75rem;
+        border-radius: 20px;
+        border: 1px solid rgba(110, 168, 255, 0.14);
+        background: linear-gradient(
+          135deg,
+          rgba(110, 168, 255, 0.07),
+          rgba(167, 139, 250, 0.05)
+        );
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+          0 20px 60px rgba(0, 0, 0, 0.35);
         opacity: 0;
         animation: fadeUp 0.8s ease forwards 0.55s;
       }
 
-      .tagline strong {
-        color: var(--text);
+      .tagline-wrap::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 21px;
+        padding: 1px;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 168, 255, 0.35),
+          rgba(167, 139, 250, 0.15),
+          rgba(34, 211, 238, 0.25)
+        );
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      .tagline {
+        font-size: clamp(1.05rem, 3vw, 1.28rem);
+        font-weight: 300;
+        line-height: 1.75;
+        color: var(--muted);
+      }
+
+      .tagline .hl-cyan {
+        color: var(--accent-cyan);
         font-weight: 500;
+      }
+
+      .tagline .hl-violet {
+        color: var(--accent-hot);
+        font-weight: 500;
+      }
+
+      .tagline .hl-blue {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .tagline .hl-loop {
+        display: inline-block;
+        padding: 0.1em 0.45em;
+        border-radius: 999px;
+        color: #f4f6ff;
+        font-weight: 500;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 168, 255, 0.22),
+          rgba(167, 139, 250, 0.22)
+        );
+        box-shadow: 0 0 24px rgba(110, 168, 255, 0.15);
       }
 
       .cta-row {
@@ -369,24 +465,18 @@
         }
       }
 
-      .char {
-        display: inline-block;
-        opacity: 0;
-        animation: charIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      }
-
-      @keyframes charIn {
-        from {
-          opacity: 0;
-          transform: translateY(30px) rotateX(-40deg);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) rotateX(0);
-        }
-      }
-
       @media (max-width: 540px) {
+        .tagline-wrap {
+          padding: 1.1rem 1.25rem;
+        }
+
+        .hero-line {
+          font-size: clamp(1.75rem, 8vw, 2.5rem);
+        }
+
+        .hero-accent {
+          font-size: clamp(2rem, 10vw, 3rem);
+        }
         .metrics {
           gap: 1.5rem;
         }
@@ -434,14 +524,27 @@
         Now live
       </div>
 
-      <h1 aria-label="SuperbVise.ai">
-        <span class="brand" id="brand"></span>
+      <p class="wordmark">SuperbVise.ai</p>
+
+      <h1 class="hero">
+        <span class="hero-line">
+          Don't <span class="hero-muted">supervise</span> it.
+        </span>
+        <span class="hero-line hero-accent">
+          <span class="hero-superb">Superb</span><span class="hero-v">V</span><span class="hero-superb">ise</span>
+          <span class="hero-it"> it.</span>
+        </span>
       </h1>
 
-      <p class="tagline">
-        <strong>AI supervision and monitoring</strong> for teams building
-        reliable, observable AI systems. Something extraordinary is on the way.
-      </p>
+      <div class="tagline-wrap">
+        <p class="tagline">
+          <span class="hl-cyan">Agentic data annotation</span> and
+          <span class="hl-violet">self-improvement</span>.<br />
+          <span class="hl-blue">Humans</span> and
+          <span class="hl-violet">agents</span>, in the
+          <span class="hl-loop">loop</span>.
+        </p>
+      </div>
 
       <div class="cta-row">
         <a class="cta cta-primary" href="mailto:hello@superbvise.ai">
@@ -460,46 +563,21 @@
 
       <div class="metrics">
         <div class="metric">
-          <div class="metric-value" data-target="24">0</div>
-          <div class="metric-label">/ 7 Monitoring</div>
+          <div class="metric-value" data-target="100" data-suffix="%">0</div>
+          <div class="metric-label">Agentic</div>
         </div>
         <div class="metric">
-          <div class="metric-value" data-target="100">0</div>
-          <div class="metric-label">% Visibility</div>
+          <div class="metric-value" data-text="H+A">—</div>
+          <div class="metric-label">Human + Agent</div>
         </div>
         <div class="metric">
-          <div class="metric-value" data-target="1">0</div>
-          <div class="metric-label">Platform</div>
+          <div class="metric-value" data-text="∞">—</div>
+          <div class="metric-label">Self-improve</div>
         </div>
       </div>
     </main>
 
     <script>
-      const brandText = [
-        { t: "S", d: 0 },
-        { t: "u", d: 1 },
-        { t: "p", d: 2 },
-        { t: "e", d: 3 },
-        { t: "r", d: 4 },
-        { t: "b", d: 5 },
-        { t: "V", d: 6, cls: "v" },
-        { t: "i", d: 7 },
-        { t: "s", d: 8 },
-        { t: "e", d: 9 },
-        { t: ".", d: 10, cls: "domain" },
-        { t: "a", d: 11, cls: "domain" },
-        { t: "i", d: 12, cls: "domain" },
-      ];
-
-      const brandEl = document.getElementById("brand");
-      brandText.forEach(({ t, d, cls }) => {
-        const span = document.createElement("span");
-        span.className = "char" + (cls ? " " + cls : "");
-        span.textContent = t;
-        span.style.animationDelay = `${0.35 + d * 0.06}s`;
-        brandEl.appendChild(span);
-      });
-
       const canvas = document.getElementById("particles");
       const ctx = canvas.getContext("2d");
       let particles = [];
@@ -563,20 +641,20 @@
       drawParticles();
 
       document.querySelectorAll(".metric-value").forEach((el) => {
+        if (el.dataset.text) {
+          el.textContent = el.dataset.text;
+          return;
+        }
+
         const target = +el.dataset.target;
-        const suffix = el.parentElement.querySelector(".metric-label").textContent.includes("%")
-          ? "%"
-          : el.parentElement.querySelector(".metric-label").textContent.includes("/")
-            ? "/7"
-            : "";
+        const suffix = el.dataset.suffix || "";
         const start = performance.now();
         const duration = 1800;
 
         function tick(now) {
           const t = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - t, 3);
-          const val = Math.round(eased * target);
-          el.textContent = suffix === "/7" ? val + suffix : val + suffix;
+          el.textContent = Math.round(eased * target) + suffix;
           if (t < 1) requestAnimationFrame(tick);
         }
 
